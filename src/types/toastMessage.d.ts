@@ -8,6 +8,6 @@ export interface ToastMessageProps {
 
 export interface ToastMessageContextType {
   toastMessages: ToastMessageProps[];
-  showToastMessage: ({message: string, type: ToastMessageType}) => void;
+  showToastMessage: ({ message: string, type: ToastMessageType }) => void;
   removeToastMessage: (id: string) => void;
 }

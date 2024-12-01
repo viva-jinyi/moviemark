@@ -9,7 +9,7 @@ export interface InputStyleProps {
   fullWidth?: boolean;
 }
 
-export interface BaseInputProps extends 
+export interface BaseInputProps extends
   React.InputHTMLAttributes<HTMLInputElement>,
   InputStyleProps {
   icon?: React.ReactNode;
@@ -21,7 +21,7 @@ export interface BaseInputProps extends
   rightElement?: React.ReactNode;
 }
 
-export interface TextAreaProps extends 
+export interface TextAreaProps extends
   Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "size">,
   InputStyleProps {
   error?: string;
@@ -29,4 +29,4 @@ export interface TextAreaProps extends
   label?: string;
   required?: boolean;
   containerClassName?: string;
-} 
+}

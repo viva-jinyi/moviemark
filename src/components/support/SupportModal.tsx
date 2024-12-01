@@ -6,7 +6,6 @@ import BaseButton from "@/components/common/Button/BaseButton";
 import TextArea from "@/components/common/Input/TextArea";
 import BaseModal from "@/components/common/Modal/BaseModal";
 
-
 interface SupportModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -22,54 +21,54 @@ interface SupportModalProps {
  */
 
 const SupportModal = ({ isOpen, onClose }: SupportModalProps) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [content, setContent] = useState("");
+	const [isLoading, setIsLoading] = useState(false);
+	const [content, setContent] = useState("");
 
-  const handleSubmit = async () => {
-    if (!content.trim()) return;
+	const handleSubmit = async () => {
+		if (!content.trim()) return;
 
-    setIsLoading(true);
-    try {
-      // API 호출 로직
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      onClose();
-    } finally {
-      setIsLoading(false);
-    }
-  };
+		setIsLoading(true);
+		try {
+			// API 호출 로직
+			await new Promise(resolve => setTimeout(resolve, 1000));
+			onClose();
+		} finally {
+			setIsLoading(false);
+		}
+	};
 
-  return (
-    <BaseModal isOpen={isOpen} onClose={onClose}>
-      <div>
-        <div className="px-8 py-6 text-center">
-          <h2 className="text-heading-4 text-white">
+	return (
+		<BaseModal isOpen={isOpen} onClose={onClose}>
+			<div>
+				<div className="px-8 py-6 text-center">
+					<h2 className="text-heading-4 text-white">
             Please write down any<br />inconveniences.
-          </h2>
-        </div>
+					</h2>
+				</div>
 
-        <div className="p-8">
-          <TextArea
-            placeholder="Please write out."
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            rows={6}
-            maxLength={500}
-          />
+				<div className="p-8">
+					<TextArea
+						placeholder="Please write out."
+						value={content}
+						onChange={(e) => setContent(e.target.value)}
+						rows={6}
+						maxLength={500}
+					/>
 
-          <BaseButton
-            size="full"
-            variant="filled"
-            color="primary-500"
-            onClick={handleSubmit}
-            isLoading={isLoading}
-            className="mt-8"
-          >
+					<BaseButton
+						size="full"
+						variant="filled"
+						color="primary-500"
+						onClick={handleSubmit}
+						isLoading={isLoading}
+						className="mt-8"
+					>
             Suggest
-          </BaseButton>
-        </div>
-      </div>
-    </BaseModal>
-  );
+					</BaseButton>
+				</div>
+			</div>
+		</BaseModal>
+	);
 };
 
 export default SupportModal;

@@ -16,13 +16,13 @@ import { createPortal } from "react-dom";
  *    - 스타일 상속 문제 방지
  */
 const ModalPortal = ({ children }: { children: React.ReactNode }) => {
-  const [mounted, setMounted] = useState(false);
+	const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+	useEffect(() => {
+		setMounted(true);
+	}, []);
 
-  return mounted ? createPortal(children, document.body) : null;
+	return mounted ? createPortal(children, document.body) : null;
 };
 
 export default ModalPortal;

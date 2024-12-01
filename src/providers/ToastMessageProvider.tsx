@@ -25,49 +25,49 @@ const ToastMessageContext = createContext<ToastMessageContextType | null>(null);
  * - 컴포넌트가 사라질 때 실행 중인 모든 타이머를 한 번에 정리 가능
  */
 export function ToastMessageProvider({ children }: { children: React.ReactNode }) {
-  const [toastMessages, setToastMessages] = useState<ToastMessageProps[]>([]);
-  const timeoutIds = useRef(new Set<NodeJS.Timeout>());
+	const [toastMessages, setToastMessages] = useState<ToastMessageProps[]>([]);
+	const timeoutIds = useRef(new Set<NodeJS.Timeout>());
 
-  // 컴포넌트가 사라질 때 실행 중인 모든 타이머 정리
-  useEffect(() => {
-    return () => {
-      timeoutIds.current.forEach(id => clearTimeout(id));
-    };
-  }, []);
+	// 컴포넌트가 사라질 때 실행 중인 모든 타이머 정리
+	useEffect(() => {
+		return () => {
+			timeoutIds.current.forEach(id => clearTimeout(id));
+		};
+	}, []);
 
-  const removeToastMessage = useCallback((id: string) => {
-    setToastMessages(prev => prev.filter(toastMessage => toastMessage.id !== id));
-  }, []);
+	const removeToastMessage = useCallback((id: string) => {
+		setToastMessages(prev => prev.filter(toastMessage => toastMessage.id !== id));
+	}, []);
 
-  const showToastMessage = useCallback(({ message, type }: { message: string; type: ToastMessageProps["type"] }) => {
-    const id = Math.random().toString(36).substring(7);
+	const showToastMessage = useCallback(({ message, type }: { message: string; type: ToastMessageProps["type"] }) => {
+		const id = Math.random().toString(36).substring(7);
 
-    if (toastMessages.some(toastMessage => toastMessage.message === message)) {
-      return;
-    }
+		if (toastMessages.some(toastMessage => toastMessage.message === message)) {
+			return;
+		}
 
-    setToastMessages(prev => [...prev, { id, message, type }]);
+		setToastMessages(prev => [...prev, { id, message, type }]);
 
-    // 3초 후 자동으로 알림 제거하는 타이머 설정
-    const timeoutId = setTimeout(() => {
-      removeToastMessage(id);
-      timeoutIds.current.delete(timeoutId); // 타이머 제거
-    }, 3000);
+		// 3초 후 자동으로 알림 제거하는 타이머 설정
+		const timeoutId = setTimeout(() => {
+			removeToastMessage(id);
+			timeoutIds.current.delete(timeoutId); // 타이머 제거
+		}, 3000);
 
-    timeoutIds.current.add(timeoutId); // 새로운 타이머 추가
-  }, [toastMessages, removeToastMessage]);
+		timeoutIds.current.add(timeoutId); // 새로운 타이머 추가
+	}, [toastMessages, removeToastMessage]);
 
-  return (
-    <ToastMessageContext.Provider value={{ toastMessages, showToastMessage, removeToastMessage }}>
-      {children}
-    </ToastMessageContext.Provider>
-  );
+	return (
+		<ToastMessageContext.Provider value={{ toastMessages, showToastMessage, removeToastMessage }}>
+			{children}
+		</ToastMessageContext.Provider>
+	);
 }
 
 export const useToastMessageContext = () => {
-  const context = useContext(ToastMessageContext);
-  if (!context) {
-    throw new Error("useToastMessageContext must be used within ToastMessageProvider");
-  }
-  return context;
+	const context = useContext(ToastMessageContext);
+	if (!context) {
+		throw new Error("useToastMessageContext must be used within ToastMessageProvider");
+	}
+	return context;
 };

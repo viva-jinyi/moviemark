@@ -5,13 +5,13 @@ interface ModalOverlayProps {
 }
 
 const ModalOverlay = ({ onClose, className }: ModalOverlayProps) => {
-  return (
-    <div
-      className={`fixed inset-0 ${className || ""}`}
-      onClick={onClose}
-      aria-hidden="true"
-    />
-  );
+	return (
+		<div
+			className={`fixed inset-0 ${className || ""}`}
+			onClick={onClose}
+			aria-hidden="true"
+		/>
+	);
 };
 
 export default ModalOverlay;
