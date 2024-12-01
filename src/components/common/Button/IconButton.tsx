@@ -1,5 +1,5 @@
 import { memo, forwardRef } from 'react';
-import type { BaseButtonProps } from '@/types/button';
+import type { BaseButtonProps } from '@/types/button.d';
 
 type IconButtonProps = Omit<BaseButtonProps, 'leftIcon' | 'rightIcon' | 'children'> & {
   icon: React.ReactNode;
@@ -46,7 +46,8 @@ const IconButton = memo(forwardRef<HTMLButtonElement, IconButtonProps>(({
       'primary-500': 'text-primary-500 hover:text-primary-600',
       'primary-400': 'text-primary-400 hover:text-primary-500',
       gray: 'text-gray-400 hover:text-gray-300',
-      white: 'text-white hover:text-white-750'
+      white: 'text-white hover:text-white-750',
+      icon: ''
     }[color];
 
     return `${baseStyles} ${sizeStyles} ${variantStyles} ${colorStyles} ${className || ''}`;

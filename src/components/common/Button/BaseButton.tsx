@@ -1,5 +1,6 @@
-import { memo, forwardRef } from 'react';
-import type { BaseButtonProps } from '@/types/button';
+import { memo, forwardRef, useMemo } from 'react';
+import type { BaseButtonProps} from '@/types/button';
+import { BASE_BUTTON_STYLES, BUTTON_SIZE_STYLES, BUTTON_VARIANT_STYLES } from './styles';
 
 const BaseButton = memo(forwardRef<HTMLButtonElement, BaseButtonProps>(({
   size = 'md',
@@ -13,62 +14,16 @@ const BaseButton = memo(forwardRef<HTMLButtonElement, BaseButtonProps>(({
   children,
   ...props
 }, ref) => {
-  const getButtonStyles = () => {
-    const baseStyles = `
-      inline-flex
-      items-center
-      justify-center
-      rounded-xl
-      font-medium
-      transition-all
-      duration-200
-      disabled:opacity-50
-      disabled:cursor-not-allowed
-      gap-2
-    `;
-
-    const sizeStyles = {
-      icon: 'h-[3.2rem] w-[3.2rem]',
-      sm: 'h-[4rem] px-4 text-body-sm',
-      md: 'h-[4.8rem] px-6 text-body',
-      lg: 'h-[5.6rem] px-8 text-body',
-      full: 'h-[5.6rem] w-full px-8 text-body'
-    }[size];
-
-    const variantStyles = {
-      filled: {
-        primary: 'bg-primary text-white hover:bg-primary-600 active:bg-primary-700',
-        'primary-500': 'bg-primary-500 text-white hover:bg-primary-600 active:bg-primary-700',
-        'primary-400': 'bg-primary-400 text-white hover:bg-primary-500 active:bg-primary-600',
-        'icon': '',
-        'white': ''
-      },
-      text: {
-        primary: 'text-primary hover:bg-primary/10 active:bg-primary/20',
-        'primary-500': 'text-primary-500 hover:bg-primary-500/10 active:bg-primary-500/20',
-        'primary-400': 'text-primary-400 hover:bg-primary-400/10 active:bg-primary-400/20',
-        'icon': '',
-        'white': ''
-      },
-      icon: {
-        primary: '',
-        'primary-500': '',
-        'primary-400': '',
-        'icon': '',
-        'white': ''
-      }
-    }[variant]?.[color] || '';
-
+  const buttonStyles = useMemo(() => {
     const loadingStyles = isLoading ? 'cursor-wait' : '';
-
-    return `${baseStyles} ${sizeStyles} ${variantStyles} ${loadingStyles} ${className || ''}`;
-  };
+    return `${BASE_BUTTON_STYLES} ${BUTTON_SIZE_STYLES[size]} ${BUTTON_VARIANT_STYLES[variant]?.[color] || ''} ${loadingStyles} ${className || ''}`;
+  }, [size, variant, color, isLoading, className]);
 
   return (
     <button
       ref={ref}
       disabled={disabled || isLoading}
-      className={getButtonStyles()}
+      className={buttonStyles}
       {...props}
     >
       {leftIcon && <span className="inline-flex">{leftIcon}</span>}

@@ -12,7 +12,7 @@ const Layout = ({ children }: LayoutProps) => {
     <div className="min-h-screen flex flex-col bg-gray-900 bg-main-gradient bg-cover bg-top bg-no-repeat bg-fixed">
       <Header />
       <ClientSidebar />
-      <main className="flex flex-grow container w-full mx-auto px-4 py-8">
+      <main className="flex-grow container mx-auto px-4 py-8">
         {children}
       </main>
       <Footer />

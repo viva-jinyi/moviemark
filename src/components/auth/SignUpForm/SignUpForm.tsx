@@ -15,13 +15,11 @@ export interface SignUpFormProps {
 
 const SignUpForm = ({ onSuccess, onError }: SignUpFormProps) => {
   const {
-    email,
-    password,
+    formState,
     errors,
     isLoading,
     handleSubmit,
-    handleEmailChange,
-    handlePasswordChange
+    handleFormChange
   } = useSignUpForm({ onSuccess, onError });
 
   return (
@@ -36,8 +34,8 @@ const SignUpForm = ({ onSuccess, onError }: SignUpFormProps) => {
         placeholder="이메일을 입력하세요"
         icon={<EmailIcon />}
         required
-        value={email}
-        onChange={handleEmailChange}
+        value={formState.email}
+        onChange={handleFormChange('email')}
         validationState={errors.email ? 'invalid' : 'default'}
         error={errors.email}
         disabled={isLoading}
@@ -47,10 +45,21 @@ const SignUpForm = ({ onSuccess, onError }: SignUpFormProps) => {
         placeholder="비밀번호를 입력하세요"
         icon={<LockIcon />}
         required
-        value={password}
-        onChange={handlePasswordChange}
+        value={formState.password}
+        onChange={handleFormChange('password')}
         validationState={errors.password ? 'invalid' : 'default'}
         error={errors.password}
+        disabled={isLoading}
+      />
+      <PasswordInput
+        label="비밀번호 확인"
+        placeholder="비밀번호를 다시 입력하세요"
+        icon={<LockIcon />}
+        required
+        value={formState.passwordConfirm}
+        onChange={handleFormChange('passwordConfirm')}
+        validationState={errors.passwordConfirm ? 'invalid' : 'default'}
+        error={errors.passwordConfirm}
         disabled={isLoading}
       />
       <BaseButton
@@ -61,7 +70,7 @@ const SignUpForm = ({ onSuccess, onError }: SignUpFormProps) => {
         isLoading={isLoading}
         disabled={isLoading}
       >
-        {isLoading ? '로그인 중...' : '로그인'}
+        {isLoading ? '회원가입 중...' : '회원가입'}
       </BaseButton>
     </form>
   );
