@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import { Poppins } from 'next/font/google'
 import Providers from '../providers'
 import Layout from '@/components/layout/Layout'
+import AlertContainer from "@/components/common/Alert/AlertContainer";
 import "@/styles/global.css";
-import { AlertProvider } from '@/providers/AlertProvider';
-import AlertContainer from '@/components/common/Alert/AlertContainer';
 
 export const metadata: Metadata = {
   title: "Movie Mark",
@@ -25,14 +24,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={poppins.className}>
       <body>
-        <AlertProvider>
-          <Providers>
-            <Layout>
-              {children}
-            </Layout>
-          </Providers>
+        <Providers>
+          <Layout>
+            {children}
+          </Layout>
           <AlertContainer />
-        </AlertProvider>
+        </Providers>
       </body>
     </html>
   );

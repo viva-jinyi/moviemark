@@ -20,18 +20,15 @@ export const AlertProvider = ({ children }: { children: React.ReactNode }) => {
     setAlerts(prev => prev.filter(alert => alert.id !== id));
   }, []);
 
-  const showAlert = useCallback((message: string, type: AlertProps['type']) => {
+  const showAlert = useCallback(({ message, type }: { message: string; type: AlertProps['type'] }) => {
     const id = Math.random().toString(36).substring(7);
-    
-    // 중복 메시지 방지
+
     if (alerts.some(alert => alert.message === message)) {
       return;
     }
 
     setAlerts(prev => [...prev, { id, message, type }]);
-
-    // 3초 후 자동 제거
-    setTimeout(() => removeAlert(id), 3000);
+    setTimeout(() => removeAlert(id), 2000);
   }, [alerts, removeAlert]);
 
   return (

@@ -8,6 +8,6 @@ export interface AlertProps {
 
 export interface AlertContextType {
   alerts: AlertProps[];
-  showAlert: (message: string, type: AlertType) => void;
+  showAlert: ({message: string, type: AlertType}) => void;
   removeAlert: (id: string) => void;
 } 
