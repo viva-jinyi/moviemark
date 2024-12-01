@@ -1,10 +1,5 @@
 import { forwardRef, memo } from 'react';
-import type { BaseInputProps } from '@/types/input';
-
-type TextAreaProps = Omit<BaseInputProps, 'type' | 'size'> & {
-  rows?: number;
-  maxLength?: number;
-};
+import type { TextAreaProps } from '@/types/input';
 
 const TextArea = memo(forwardRef<HTMLTextAreaElement, TextAreaProps>(({
   error,
@@ -58,7 +53,7 @@ const TextArea = memo(forwardRef<HTMLTextAreaElement, TextAreaProps>(({
       {label && (
         <label className="block mb-2 text-body text-gray-300">
           {label}
-          {required && <span className="text-error-500 ml-1">*</span>}
+          {required && <span className="text-error-500 ml-5">*</span>}
         </label>
       )}
 

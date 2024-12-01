@@ -169,7 +169,30 @@ export default {
       animation: {
         slideIn: 'slideIn 0.3s ease-out forwards',
         modalSlideIn: 'modalSlideIn 0.3s ease-out forwards'
-      }
+      },
+      spacing: {
+        0: '0',
+        1: '0.2rem',
+        2: '0.4rem',
+        3: '0.6rem',
+        4: '0.8rem',
+        5: '1rem',
+        6: '1.2rem',
+        7: '1.4rem',
+        8: '1.6rem',
+        9: '1.8rem',
+        10: '2rem',
+        11: '2.2rem',
+        12: '2.4rem',
+        13: '2.6rem',
+        14: '2.8rem',
+        15: '3rem',
+        16: '3.2rem',
+        17: '3.4rem',
+        18: '3.6rem',
+        19: '3.8rem',
+        20: '4rem'
+      },
     },
   },
   plugins: [],

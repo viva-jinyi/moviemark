@@ -27,8 +27,8 @@ const BaseInput = memo(forwardRef<HTMLInputElement, BaseInputProps>(({
       transition-all
       duration-200
       outline-none
-      ${icon ? 'pl-14' : 'pl-4'}
-      ${rightElement ? 'pr-12' : 'pr-4'}
+      ${icon ? 'pl-18' : 'pl-10'}
+      ${rightElement ? 'pr-18' : 'pr-10'}
     `;
 
     const sizeStyles = {
@@ -58,7 +58,7 @@ const BaseInput = memo(forwardRef<HTMLInputElement, BaseInputProps>(({
       {label && (
         <label className="block mb-2 text-body text-gray-300">
           {label}
-          {required && <span className="text-error-500 ml-1">*</span>}
+          {required && <span className="text-error-500 ml-5">*</span>}
         </label>
       )}
 

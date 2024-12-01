@@ -1,17 +1,19 @@
 'use client';
 
+import { useSignUpForm } from "./useSignUpForm";
+
 import TextInput from "@/components/common/Input/TextInput";
 import PasswordInput from "@/components/common/Input/PasswordInput";
-import { EmailIcon, LockIcon } from "@/components/common/Icons";
-import { useLoginForm } from "./useLoginForm";
 import BaseButton from "@/components/common/Button/BaseButton";
 
-export interface LoginFormProps {
+import { EmailIcon, LockIcon } from "@/components/common/Icons";
+
+export interface SignUpFormProps {
   onSuccess?: () => void;
   onError?: (error: Error) => void;
 }
 
-const LoginForm = ({ onSuccess, onError }: LoginFormProps) => {
+const SignUpForm = ({ onSuccess, onError }: SignUpFormProps) => {
   const {
     email,
     password,
@@ -20,7 +22,7 @@ const LoginForm = ({ onSuccess, onError }: LoginFormProps) => {
     handleSubmit,
     handleEmailChange,
     handlePasswordChange
-  } = useLoginForm({ onSuccess, onError });
+  } = useSignUpForm({ onSuccess, onError });
 
   return (
     <form
@@ -28,7 +30,7 @@ const LoginForm = ({ onSuccess, onError }: LoginFormProps) => {
       className="flex flex-col gap-8 w-full max-w-[48.6rem]"
       noValidate
     >
-      <h1 className='text-heading-1 text-white mb-20'>Login</h1>
+      <h1 className='text-heading-1 text-white mb-20'>Sign up</h1>
       <TextInput
         label="이메일"
         placeholder="이메일을 입력하세요"
@@ -65,4 +67,4 @@ const LoginForm = ({ onSuccess, onError }: LoginFormProps) => {
   );
 };
 
-export default LoginForm;
+export default SignUpForm;
