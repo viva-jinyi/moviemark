@@ -1,3 +1,5 @@
+import Link from 'next/link';
+import Image from 'next/image';
 import Logo from './Logo';
 import HamburgerButton from './HamburgerButton';
 
@@ -18,7 +20,15 @@ const Header = () => {
           <div>
             <HamburgerButton />
           </div>
-          <div className="py-3 px-4 text-link text-gray-50 cursor-pointer">Logout</div>
+          <Link href="/login" className="flex gap-2 py-3 px-4 cursor-pointer">
+            <Image
+              src="/icons/logout.svg"
+              alt="화살표"
+              width={16}
+              height={16}
+            />
+            <span className='text-link text-gray-50'>LogIn</span>
+          </Link>
         </div>
       </div>
     </header>
