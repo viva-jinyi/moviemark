@@ -34,7 +34,7 @@ const AlertItem = ({ id, message, type }: AlertProps) => {
   };
 
   return (
-    <div 
+    <div
       role="alert"
       className={`${baseStyles} ${typeStyles[type]}`}
     >
@@ -44,7 +44,7 @@ const AlertItem = ({ id, message, type }: AlertProps) => {
         className="p-1 hover:bg-black-200 rounded-lg transition-colors"
         aria-label="알림 닫기"
       >
-        <Image 
+        <Image
           src="/icons/close.svg"
           alt="닫기"
           width={24}
@@ -56,4 +56,4 @@ const AlertItem = ({ id, message, type }: AlertProps) => {
   );
 };
 
-export default AlertItem; 
+export default AlertItem;
