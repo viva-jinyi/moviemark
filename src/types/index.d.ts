@@ -1,2 +1,2 @@
-export * from './toastMessage';
-export * from './modal';
+export * from "./toastMessage";
+export * from "./modal";

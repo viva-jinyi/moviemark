@@ -1,9 +1,11 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { useState } from 'react';
-import SupportModal from '@/components/support/SupportModal';
-import IconButton from '@/components/common/Button/IconButton';
+import { useState } from "react";
+
+import Image from "next/image";
+
+import IconButton from "@/components/common/Button/IconButton";
+import SupportModal from "@/components/support/SupportModal";
 
 /**
  * Footer 컴포넌트

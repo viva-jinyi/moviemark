@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import BaseButton from "@/components/common/Button/BaseButton";
 import { useTheme } from "@/providers/ThemeProvider.";
@@ -14,7 +14,7 @@ export default function ThemePage() {
         color="primary"
         onClick={toggleTheme}
       >
-        {theme === 'dark' ? '라이트 모드로 바꾸기' : '다크모드로 바꾸기'}
+        {theme === "dark" ? "라이트 모드로 바꾸기" : "다크모드로 바꾸기"}
       </BaseButton>
     </div>
   );

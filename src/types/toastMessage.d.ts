@@ -1,4 +1,4 @@
-export type ToastMessageType = 'error' | 'success' | 'info';
+export type ToastMessageType = "error" | "success" | "info";
 
 export interface ToastMessageProps {
   id: string;

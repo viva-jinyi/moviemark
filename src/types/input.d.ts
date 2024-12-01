@@ -1,6 +1,6 @@
-export type InputSize = 'sm' | 'md' | 'lg';
-export type InputVariant = 'filled' | 'outlined';
-export type ValidationState = 'default' | 'invalid' | 'valid';
+export type InputSize = "sm" | "md" | "lg";
+export type InputVariant = "filled" | "outlined";
+export type ValidationState = "default" | "invalid" | "valid";
 
 export interface InputStyleProps {
   size?: InputSize;
@@ -22,7 +22,7 @@ export interface BaseInputProps extends
 }
 
 export interface TextAreaProps extends 
-  Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'>,
+  Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "size">,
   InputStyleProps {
   error?: string;
   helper?: string;

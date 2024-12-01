@@ -1,10 +1,12 @@
-import { useState, useCallback, ChangeEvent, FormEvent } from 'react';
-import { SignUpFormProps } from './SignUpForm';
-import { validateEmail, validatePassword } from '@/utils/validate';
-import { useToastMessageContext } from '@/providers/ToastMessageProvider';
-import { signup } from '@/api/auth';
+import { useState, useCallback, ChangeEvent, FormEvent } from "react";
 
-export type FormType = 'email' | 'password' | 'passwordConfirm'
+import { signup } from "@/api/auth";
+import { useToastMessageContext } from "@/providers/ToastMessageProvider";
+import { validateEmail, validatePassword } from "@/utils/validate";
+
+import { SignUpFormProps } from "./SignUpForm";
+
+export type FormType = "email" | "password" | "passwordConfirm"
 interface FormState {
   email: string;
   password: string;
@@ -19,9 +21,9 @@ interface FormErrors {
 
 export const useSignUpForm = ({ onSuccess, onError }: SignUpFormProps) => {
   const [formState, setFormState] = useState<FormState>({
-    email: '',
-    password: '',
-    passwordConfirm: ''
+    email: "",
+    password: "",
+    passwordConfirm: ""
   })
   const [errors, setErrors] = useState<FormErrors>({});
   const [isLoading, setIsLoading] = useState(false);
@@ -36,7 +38,7 @@ export const useSignUpForm = ({ onSuccess, onError }: SignUpFormProps) => {
     const passwordError = validatePassword(formState.password);
     if (passwordError) newErrors.password = passwordError;
 
-    const passwordConfirmError = formState.password !== formState.passwordConfirm ? '비밀번호가 일치하지 않습니다.' : ''
+    const passwordConfirmError = formState.password !== formState.passwordConfirm ? "비밀번호가 일치하지 않습니다." : ""
     if (passwordConfirmError) newErrors.passwordConfirm = passwordConfirmError;
 
     setErrors(newErrors);
@@ -48,7 +50,7 @@ export const useSignUpForm = ({ onSuccess, onError }: SignUpFormProps) => {
     (key: FormType) => (e: ChangeEvent<HTMLInputElement>) => {
       const { value } = e.target;
       setFormState(prev => ({ ...prev, [key]: value }));
-      setErrors(prev => ({ ...prev, [key]: '' }));
+      setErrors(prev => ({ ...prev, [key]: "" }));
     },
     []
   );
@@ -61,11 +63,11 @@ export const useSignUpForm = ({ onSuccess, onError }: SignUpFormProps) => {
     setIsLoading(true);
     try {
       await signup({ email: formState.email, password: formState.password });
-      showToastMessage({ type: 'success', message: '회원가입 성공!' });
+      showToastMessage({ type: "success", message: "회원가입 성공!" });
       onSuccess?.();
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : '회원가입 실패';
-      showToastMessage({ type: 'error', message: errorMessage });
+      const errorMessage = error instanceof Error ? error.message : "회원가입 실패";
+      showToastMessage({ type: "error", message: errorMessage });
       onError?.(error as Error);
     } finally {
       setIsLoading(false);

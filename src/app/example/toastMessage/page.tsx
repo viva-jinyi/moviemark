@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import BaseButton from "@/components/common/Button/BaseButton";
 import { useToastMessageContext } from "@/providers/ToastMessageProvider";
@@ -7,15 +7,15 @@ export default function ToastMessagePage() {
   const { showToastMessage } = useToastMessageContext();
 
   const handleClickSuccess = () => {
-    showToastMessage({type: 'success', message: '성공 토스트 메시지 입니다.'});
+    showToastMessage({type: "success", message: "성공 토스트 메시지 입니다."});
   };
 
   const handleClickInfo = () => {
-    showToastMessage({type: 'info', message: '정보 토스트 메시지 입니다.'});
+    showToastMessage({type: "info", message: "정보 토스트 메시지 입니다."});
   };
 
   const handleClickError = () => {
-    showToastMessage({type: 'error', message: '실패 토스트 메시지 입니다.'});
+    showToastMessage({type: "error", message: "실패 토스트 메시지 입니다."});
   };
 
   return (

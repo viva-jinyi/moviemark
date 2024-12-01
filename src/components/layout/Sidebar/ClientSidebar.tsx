@@ -1,7 +1,8 @@
-'use client';
+"use client";
 
-import { useSidebar } from '@/providers/SidebarProvider';
-import Sidebar from './Sidebar';
+import { useSidebar } from "@/providers/SidebarProvider";
+
+import Sidebar from "./Sidebar";
 
 const ClientSidebar = () => {
   const { isOpen, toggleSidebar } = useSidebar();

@@ -1,7 +1,8 @@
-import { useState, useCallback, ChangeEvent, FormEvent } from 'react';
-import { validateEmail, validatePassword } from '@/utils/validate';
-import { useToastMessageContext } from '@/providers/ToastMessageProvider';
-import { login } from '@/api/auth';
+import { useState, useCallback, ChangeEvent, FormEvent } from "react";
+
+import { login } from "@/api/auth";
+import { useToastMessageContext } from "@/providers/ToastMessageProvider";
+import { validateEmail, validatePassword } from "@/utils/validate";
 
 interface UseLoginFormProps {
   onSuccess?: () => void;
@@ -14,8 +15,8 @@ interface FormErrors {
 }
 
 export const useLoginForm = ({ onSuccess, onError }: UseLoginFormProps) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [errors, setErrors] = useState<FormErrors>({});
   const [isLoading, setIsLoading] = useState(false);
   const { showToastMessage } = useToastMessageContext();
@@ -35,12 +36,12 @@ export const useLoginForm = ({ onSuccess, onError }: UseLoginFormProps) => {
 
   const handleEmailChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
-    setErrors(prev => ({ ...prev, email: '' }));
+    setErrors(prev => ({ ...prev, email: "" }));
   }, []);
 
   const handlePasswordChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
-    setErrors(prev => ({ ...prev, password: '' }));
+    setErrors(prev => ({ ...prev, password: "" }));
   }, []);
 
   const handleSubmit = async (e: FormEvent) => {
@@ -51,11 +52,11 @@ export const useLoginForm = ({ onSuccess, onError }: UseLoginFormProps) => {
     setIsLoading(true);
     try {
       await login({ email, password });
-      showToastMessage({ type: 'success', message: '로그인 성공!' });
+      showToastMessage({ type: "success", message: "로그인 성공!" });
       onSuccess?.();
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : '로그인 실패';
-      showToastMessage({ type: 'error', message: errorMessage });
+      const errorMessage = error instanceof Error ? error.message : "로그인 실패";
+      showToastMessage({ type: "error", message: errorMessage });
       onError?.(error as Error);
     } finally {
       setIsLoading(false);

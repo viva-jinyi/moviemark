@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
+import Link from "next/link";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -17,7 +17,7 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
         />
       )}
       <nav className={`fixed top-0 left-0 h-full w-64 bg-white dark:bg-gray-800 transform transition-transform duration-300 ease-in-out z-50 ${
-        isOpen ? 'translate-x-0' : '-translate-x-full'
+        isOpen ? "translate-x-0" : "-translate-x-full"
       }`}>
         <div className="p-4 border-b dark:border-gray-700">
           <button 

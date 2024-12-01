@@ -1,9 +1,11 @@
-'use client';  // 필수: Portal, DOM 조작, 이벤트 핸들링 때문
+"use client";  // 필수: Portal, DOM 조작, 이벤트 핸들링 때문
 
-import BaseModal from '@/components/common/Modal/BaseModal';
-import BaseButton from '@/components/common/Button/BaseButton';
-import TextArea from '@/components/common/Input/TextArea';
-import { useState } from 'react';
+import { useState } from "react";
+
+import BaseButton from "@/components/common/Button/BaseButton";
+import TextArea from "@/components/common/Input/TextArea";
+import BaseModal from "@/components/common/Modal/BaseModal";
+
 
 interface SupportModalProps {
   isOpen: boolean;
@@ -21,7 +23,7 @@ interface SupportModalProps {
 
 const SupportModal = ({ isOpen, onClose }: SupportModalProps) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [content, setContent] = useState('');
+  const [content, setContent] = useState("");
 
   const handleSubmit = async () => {
     if (!content.trim()) return;

@@ -1,7 +1,8 @@
-'use client';
+"use client";
 
-import { createContext, useContext, useState, useCallback, useRef, useEffect } from 'react';
-import { type ToastMessageProps, type ToastMessageContextType } from '@/types/toastMessage';
+import { createContext, useContext, useState, useCallback, useRef, useEffect } from "react";
+
+import { type ToastMessageProps, type ToastMessageContextType } from "@/types/toastMessage";
 
 const ToastMessageContext = createContext<ToastMessageContextType | null>(null);
 
@@ -38,7 +39,7 @@ export function ToastMessageProvider({ children }: { children: React.ReactNode }
     setToastMessages(prev => prev.filter(toastMessage => toastMessage.id !== id));
   }, []);
 
-  const showToastMessage = useCallback(({ message, type }: { message: string; type: ToastMessageProps['type'] }) => {
+  const showToastMessage = useCallback(({ message, type }: { message: string; type: ToastMessageProps["type"] }) => {
     const id = Math.random().toString(36).substring(7);
 
     if (toastMessages.some(toastMessage => toastMessage.message === message)) {
@@ -66,7 +67,7 @@ export function ToastMessageProvider({ children }: { children: React.ReactNode }
 export const useToastMessageContext = () => {
   const context = useContext(ToastMessageContext);
   if (!context) {
-    throw new Error('useToastMessageContext must be used within ToastMessageProvider');
+    throw new Error("useToastMessageContext must be used within ToastMessageProvider");
   }
   return context;
 };

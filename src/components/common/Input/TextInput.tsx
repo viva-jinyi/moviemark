@@ -1,8 +1,10 @@
-import { forwardRef } from 'react';
-import BaseInput from './BaseInput';
-import type { BaseInputProps } from '@/types/input';
+import { forwardRef } from "react";
 
-export type TextInputProps = Omit<BaseInputProps, 'type'>;
+import type { BaseInputProps } from "@/types/input";
+
+import BaseInput from "./BaseInput";
+
+export type TextInputProps = Omit<BaseInputProps, "type">;
 
 const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
   return (
@@ -14,6 +16,6 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
   );
 });
 
-TextInput.displayName = 'TextInput';
+TextInput.displayName = "TextInput";
 
 export default TextInput;

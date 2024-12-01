@@ -1,12 +1,14 @@
-'use client';
+"use client";
 
-import { forwardRef, memo, useState } from 'react';
-import BaseInput from './BaseInput';
-import type { BaseInputProps } from '@/types/input';
-import { EyeIcon } from '@/components/common/Icons';
-import IconButton from '@/components/common/Button/IconButton';
+import { forwardRef, memo, useState } from "react";
 
-export type PasswordInputProps = Omit<BaseInputProps, 'type' | 'rightElement'>;
+import IconButton from "@/components/common/Button/IconButton";
+import { EyeIcon } from "@/components/common/Icons";
+import type { BaseInputProps } from "@/types/input";
+
+import BaseInput from "./BaseInput";
+
+export type PasswordInputProps = Omit<BaseInputProps, "type" | "rightElement">;
 
 const PasswordInput = memo(forwardRef<HTMLInputElement, PasswordInputProps>((props, ref) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -17,8 +19,8 @@ const PasswordInput = memo(forwardRef<HTMLInputElement, PasswordInputProps>((pro
 
   const VisibilityToggle = (
     <IconButton
-      icon={<EyeIcon className={isVisible ? 'opacity-70' : 'opacity-100'} />}
-      label={isVisible ? '비밀번호 숨기기' : '비밀번호 표시'}
+      icon={<EyeIcon className={isVisible ? "opacity-70" : "opacity-100"} />}
+      label={isVisible ? "비밀번호 숨기기" : "비밀번호 표시"}
       color="gray"
       onClick={toggleVisibility}
     />
@@ -26,7 +28,7 @@ const PasswordInput = memo(forwardRef<HTMLInputElement, PasswordInputProps>((pro
 
   return (
     <BaseInput
-      type={isVisible ? 'text' : 'password'}
+      type={isVisible ? "text" : "password"}
       ref={ref}
       rightElement={VisibilityToggle}
       {...props}
@@ -34,6 +36,6 @@ const PasswordInput = memo(forwardRef<HTMLInputElement, PasswordInputProps>((pro
   );
 }));
 
-PasswordInput.displayName = 'PasswordInput';
+PasswordInput.displayName = "PasswordInput";
 
 export default PasswordInput;

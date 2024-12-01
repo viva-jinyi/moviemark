@@ -1,11 +1,14 @@
-'use client';
+"use client";
 
-import ModalPortal from './ModalPortal';
-import ModalOverlay from './ModalOverlay';
-import { useModal } from './hooks/useModal';
-import { BaseModalProps } from '@/types/modal';
-import IconButton from '../Button/IconButton';
-import Image from 'next/image';
+import Image from "next/image";
+
+import { BaseModalProps } from "@/types/modal";
+
+import { useModal } from "./hooks/useModal";
+import ModalOverlay from "./ModalOverlay";
+import ModalPortal from "./ModalPortal";
+import IconButton from "../Button/IconButton";
+
 
 /**
  * 기본 모달 컴포넌트

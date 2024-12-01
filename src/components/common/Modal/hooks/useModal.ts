@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from 'react';
+import { useEffect, useCallback } from "react";
 
 interface UseModalProps {
   isOpen: boolean;
@@ -25,15 +25,15 @@ interface UseModalProps {
  */
 export const useModal = ({ isOpen, onClose }: UseModalProps) => {
   const handleEscape = useCallback((e: KeyboardEvent) => {
-    if (e.key === 'Escape') onClose();
+    if (e.key === "Escape") onClose();
   }, [onClose]);
 
   // 스크롤 제어
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
       return () => {
-        document.body.style.overflow = 'unset';
+        document.body.style.overflow = "unset";
       };
     }
   }, [isOpen]);
@@ -41,9 +41,9 @@ export const useModal = ({ isOpen, onClose }: UseModalProps) => {
   // 키보드 이벤트
   useEffect(() => {
     if (isOpen) {
-      document.addEventListener('keydown', handleEscape);
+      document.addEventListener("keydown", handleEscape);
       return () => {
-        document.removeEventListener('keydown', handleEscape);
+        document.removeEventListener("keydown", handleEscape);
       };
     }
   }, [isOpen, handleEscape]);

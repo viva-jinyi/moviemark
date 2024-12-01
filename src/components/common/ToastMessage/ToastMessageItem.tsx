@@ -1,7 +1,8 @@
-import Image from 'next/image';
-import { useToastMessageContext } from '@/providers/ToastMessageProvider';
-import { type ToastMessageProps } from '@/types/toastMessage';
-import IconButton from '@/components/common/Button/IconButton';
+import Image from "next/image";
+
+import IconButton from "@/components/common/Button/IconButton";
+import { useToastMessageContext } from "@/providers/ToastMessageProvider";
+import { type ToastMessageProps } from "@/types/toastMessage";
 
 /**
  * 애니메이션:

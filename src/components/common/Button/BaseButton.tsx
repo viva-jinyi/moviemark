@@ -1,11 +1,13 @@
-import { memo, forwardRef, useMemo } from 'react';
-import type { BaseButtonProps} from '@/types/button';
-import { BASE_BUTTON_STYLES, BUTTON_SIZE_STYLES, BUTTON_VARIANT_STYLES } from './styles';
+import { memo, forwardRef, useMemo } from "react";
+
+import type { BaseButtonProps} from "@/types/button";
+
+import { BASE_BUTTON_STYLES, BUTTON_SIZE_STYLES, BUTTON_VARIANT_STYLES } from "./styles";
 
 const BaseButton = memo(forwardRef<HTMLButtonElement, BaseButtonProps>(({
-  size = 'md',
-  variant = 'filled',
-  color = 'primary',
+  size = "md",
+  variant = "filled",
+  color = "primary",
   leftIcon,
   rightIcon,
   isLoading,
@@ -15,8 +17,8 @@ const BaseButton = memo(forwardRef<HTMLButtonElement, BaseButtonProps>(({
   ...props
 }, ref) => {
   const buttonStyles = useMemo(() => {
-    const loadingStyles = isLoading ? 'cursor-wait' : '';
-    return `${BASE_BUTTON_STYLES} ${BUTTON_SIZE_STYLES[size]} ${BUTTON_VARIANT_STYLES[variant]?.[color] || ''} ${loadingStyles} ${className || ''}`;
+    const loadingStyles = isLoading ? "cursor-wait" : "";
+    return `${BASE_BUTTON_STYLES} ${BUTTON_SIZE_STYLES[size]} ${BUTTON_VARIANT_STYLES[variant]?.[color] || ""} ${loadingStyles} ${className || ""}`;
   }, [size, variant, color, isLoading, className]);
 
   return (
@@ -55,6 +57,6 @@ const BaseButton = memo(forwardRef<HTMLButtonElement, BaseButtonProps>(({
   );
 }));
 
-BaseButton.displayName = 'BaseButton';
+BaseButton.displayName = "BaseButton";
 
 export default BaseButton; 

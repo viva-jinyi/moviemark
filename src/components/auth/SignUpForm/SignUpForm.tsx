@@ -1,12 +1,12 @@
-'use client';
+"use client";
+
+
+import BaseButton from "@/components/common/Button/BaseButton";
+import { EmailIcon, LockIcon } from "@/components/common/Icons";
+import PasswordInput from "@/components/common/Input/PasswordInput";
+import TextInput from "@/components/common/Input/TextInput";
 
 import { useSignUpForm } from "./useSignUpForm";
-
-import TextInput from "@/components/common/Input/TextInput";
-import PasswordInput from "@/components/common/Input/PasswordInput";
-import BaseButton from "@/components/common/Button/BaseButton";
-
-import { EmailIcon, LockIcon } from "@/components/common/Icons";
 
 export interface SignUpFormProps {
   onSuccess?: () => void;
@@ -35,8 +35,8 @@ const SignUpForm = ({ onSuccess, onError }: SignUpFormProps) => {
         icon={<EmailIcon />}
         required
         value={formState.email}
-        onChange={handleFormChange('email')}
-        validationState={errors.email ? 'invalid' : 'default'}
+        onChange={handleFormChange("email")}
+        validationState={errors.email ? "invalid" : "default"}
         error={errors.email}
         disabled={isLoading}
       />
@@ -46,8 +46,8 @@ const SignUpForm = ({ onSuccess, onError }: SignUpFormProps) => {
         icon={<LockIcon />}
         required
         value={formState.password}
-        onChange={handleFormChange('password')}
-        validationState={errors.password ? 'invalid' : 'default'}
+        onChange={handleFormChange("password")}
+        validationState={errors.password ? "invalid" : "default"}
         error={errors.password}
         disabled={isLoading}
       />
@@ -57,8 +57,8 @@ const SignUpForm = ({ onSuccess, onError }: SignUpFormProps) => {
         icon={<LockIcon />}
         required
         value={formState.passwordConfirm}
-        onChange={handleFormChange('passwordConfirm')}
-        validationState={errors.passwordConfirm ? 'invalid' : 'default'}
+        onChange={handleFormChange("passwordConfirm")}
+        validationState={errors.passwordConfirm ? "invalid" : "default"}
         error={errors.passwordConfirm}
         disabled={isLoading}
       />
@@ -70,7 +70,7 @@ const SignUpForm = ({ onSuccess, onError }: SignUpFormProps) => {
         isLoading={isLoading}
         disabled={isLoading}
       >
-        {isLoading ? '회원가입 중...' : '회원가입'}
+        {isLoading ? "회원가입 중..." : "회원가입"}
       </BaseButton>
     </form>
   );
