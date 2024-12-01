@@ -1,7 +1,7 @@
 'use client';
 
+import { AlertContextType, AlertProps } from '@/types/alert';
 import { createContext, useContext, useState, useCallback } from 'react';
-import { type AlertProps, type AlertContextType } from '../components/common/Alert/types/alert.types';
 
 const AlertContext = createContext<AlertContextType | null>(null);
 

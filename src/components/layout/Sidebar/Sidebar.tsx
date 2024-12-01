@@ -28,7 +28,7 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
             ✕
           </button>
         </div>
-        
+
         <ul className="p-4">
           <li className="mb-2">
             <Link href="/" className="block p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded">

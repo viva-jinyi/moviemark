@@ -1,4 +1,4 @@
-import { type AlertProps } from './types/alert.types';
+import { AlertProps } from "@/types/alert";
 
 /**
  * 개별 Alert 컴포넌트

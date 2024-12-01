@@ -1,11 +1,11 @@
 'use client';
 
-import { useAlertContext } from '../../../providers/AlertProvider';
+import { useAlertContext } from '@/providers/AlertProvider';
 import AlertItem from './AlertItem';
 
 /**
  * Alert 컨테이너 컴포넌트
- * 
+ *
  * 특징:
  * 1. 포지셔닝: 화면 상단에 고정
  * 2. 스택 구조: 여러 Alert을 순차적으로 표시

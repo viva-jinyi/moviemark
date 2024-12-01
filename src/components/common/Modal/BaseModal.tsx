@@ -1,9 +1,9 @@
 'use client';
 
-import { type BaseModalProps } from './types/modal.types';
 import ModalPortal from './ModalPortal';
 import ModalOverlay from './ModalOverlay';
 import { useModal } from './hooks/useModal';
+import { BaseModalProps } from '@/types/modal';
 
 /**
  * 기본 모달 컴포넌트
