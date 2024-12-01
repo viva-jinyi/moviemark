@@ -7,29 +7,30 @@ const AlertContext = createContext<AlertContextType | null>(null);
 
 /**
  * Alert 상태 관리 Provider
- * 
- * 기술적 결정:
- * 1. useRef + setTimeout:
- *    - 컴포넌트 언마운트 시 메모리 누수 방지
- *    - cleanup 함수로 타이머 정리
- * 
- * 2. useCallback:
- *    - 함수 재생성 방지로 불필요한 리렌더링 최적화
- *    - 자식 컴포넌트 메모이제이션 지원
- * 
- * 3. Set 자료구조:
- *    - 중복 메시지 처리의 시간복잡도 O(1)
- *    - 메모리 효율적 관리
+ *
+ * useRef + Set을 사용하는 이유:
+ * 1. useRef:
+ *    - React에서 값을 "기억"하는 상자라고 생각하면 됨
+ *    - useState와 달리 값이 변해도 화면이 다시 그려지지 않음
+ *    - 컴포넌트가 리렌더링되어도 이 값은 유지됨
+ *
+ * 2. Set:
+ *    - JavaScript의 배열과 비슷하지만 중복을 허용하지 않는 특별한 배열
+ *    - 여러 타이머를 관리할 때 유용함
+ *    - add로 추가, delete로 제거가 매우 빠름
+ *
+ * 실제 사용 예시:
+ * - Alert가 사라질 때 타이머를 설정하는데, 이 타이머들을 useRef + Set으로 관리
+ * - 컴포넌트가 사라질 때 실행 중인 모든 타이머를 한 번에 정리 가능
  */
 export function AlertProvider({ children }: { children: React.ReactNode }) {
   const [alerts, setAlerts] = useState<AlertProps[]>([]);
   const timeoutIds = useRef(new Set<NodeJS.Timeout>());
 
-  // Cleanup timeouts on unmount
+  // 컴포넌트가 사라질 때 실행 중인 모든 타이머 정리
   useEffect(() => {
-    const timeouts = timeoutIds.current;
     return () => {
-      timeouts.forEach(id => clearTimeout(id));
+      timeoutIds.current.forEach(id => clearTimeout(id));
     };
   }, []);
 
@@ -46,12 +47,13 @@ export function AlertProvider({ children }: { children: React.ReactNode }) {
 
     setAlerts(prev => [...prev, { id, message, type }]);
 
+    // 3초 후 자동으로 알림 제거하는 타이머 설정
     const timeoutId = setTimeout(() => {
       removeAlert(id);
-      timeoutIds.current.delete(timeoutId);
-    }, 2500);
+      timeoutIds.current.delete(timeoutId); // 타이머 제거
+    }, 3000);
 
-    timeoutIds.current.add(timeoutId);
+    timeoutIds.current.add(timeoutId); // 새로운 타이머 추가
   }, [alerts, removeAlert]);
 
   return (
