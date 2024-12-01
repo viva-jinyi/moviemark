@@ -4,6 +4,7 @@ import { forwardRef, memo, useState } from 'react';
 import BaseInput from './BaseInput';
 import type { BaseInputProps } from '@/types/input';
 import { EyeIcon } from '@/components/common/Icons';
+import IconButton from '@/components/common/Button/IconButton';
 
 export type PasswordInputProps = Omit<BaseInputProps, 'type' | 'rightElement'>;
 
@@ -15,14 +16,12 @@ const PasswordInput = memo(forwardRef<HTMLInputElement, PasswordInputProps>((pro
   };
 
   const VisibilityToggle = (
-    <button
-      type="button"
+    <IconButton
+      icon={<EyeIcon className={isVisible ? 'opacity-70' : 'opacity-100'} />}
+      label={isVisible ? '비밀번호 숨기기' : '비밀번호 표시'}
+      color="gray"
       onClick={toggleVisibility}
-      className="p-2 text-gray-400 hover:text-gray-300 transition-colors"
-      aria-label={isVisible ? '비밀번호 숨기기' : '비밀번호 표시'}
-    >
-      <EyeIcon className={isVisible ? 'opacity-70' : 'opacity-100'} />
-    </button>
+    />
   );
 
   return (

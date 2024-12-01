@@ -4,6 +4,8 @@ import ModalPortal from './ModalPortal';
 import ModalOverlay from './ModalOverlay';
 import { useModal } from './hooks/useModal';
 import { BaseModalProps } from '@/types/modal';
+import IconButton from '../Button/IconButton';
+import Image from 'next/image';
 
 /**
  * 기본 모달 컴포넌트
@@ -31,8 +33,18 @@ const BaseModal = ({ isOpen, onClose, children }: BaseModalProps) => {
         role="dialog"
         aria-modal="true"
       >
-        <ModalOverlay onClose={onClose} />
-        <div className="relative">
+        <ModalOverlay 
+          onClose={onClose}
+          className="bg-black-750 backdrop-blur-sm"
+        />
+        <div className="w-full max-w-[48rem] relative animate-modalSlideIn rounded-[24px] border border-gray-800 bg-[rgba(18,24,41,0.80)] backdrop-blur-[20px] py-[8rem] px-[4rem]">
+          <IconButton
+            icon={<Image src="/icons/close.svg" alt="닫기" width={24} height={24} />}
+            label="모달 닫기"
+            onClick={onClose}
+            className="absolute top-4 right-4 z-10"
+            color="white"
+          />
           {children}
         </div>
       </div>

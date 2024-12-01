@@ -1,6 +1,7 @@
 import { type AlertProps } from '@/types/alert';
 import { useAlertContext } from '@/providers/AlertProvider';
 import Image from 'next/image';
+import IconButton from '@/components/common/Button/IconButton';
 
 /**
  * 개별 Alert 컴포넌트
@@ -34,26 +35,20 @@ const AlertItem = ({ id, message, type }: AlertProps) => {
   };
 
   return (
-    <div
+    <div 
       role="alert"
       className={`${baseStyles} ${typeStyles[type]}`}
     >
       <span className="text-body font-medium pr-4">{message}</span>
-      <button
+      <IconButton
+        icon={<Image src="/icons/close.svg" alt="닫기" width={24} height={24} />}
+        label="알림 닫기"
+        color="white"
         onClick={() => removeAlert(id)}
-        className="p-1 hover:bg-black-200 rounded-lg transition-colors"
-        aria-label="알림 닫기"
-      >
-        <Image
-          src="/icons/close.svg"
-          alt="닫기"
-          width={24}
-          height={24}
-          className="text-white"
-        />
-      </button>
+        className="hover:bg-black-200"
+      />
     </div>
   );
 };
 
-export default AlertItem;
+export default AlertItem; 

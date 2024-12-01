@@ -55,8 +55,8 @@ const LoginForm = ({ onSuccess, onError }: LoginFormProps) => {
         size="full"
         variant="filled"
         color="primary"
-        className="mt-4"
         isLoading={isLoading}
+        disabled={isLoading}
       >
         {isLoading ? '로그인 중...' : '로그인'}
       </BaseButton>

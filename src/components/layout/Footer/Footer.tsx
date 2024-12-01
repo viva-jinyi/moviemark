@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import SupportModal from '@/components/support/SupportModal';
+import IconButton from '@/components/common/Button/IconButton';
 
 /**
  * Footer 컴포넌트
@@ -17,22 +18,23 @@ const Footer = () => {
 
   return (
     <footer className="relative">
-      <button
-        type="button"
+      <IconButton
+        icon={
+          <Image 
+            src="/icons/support.svg" 
+            alt="고객 지원"
+            width={50}
+            height={50}
+            className="drop-shadow-lg"
+            priority={false}
+            quality={90}
+          />
+        }
         className="fixed bottom-8 right-8 cursor-pointer transition-transform duration-300 hover:-translate-y-1"
+        label="고객 지원"
+        variant="icon-round"
         onClick={() => setIsModalOpen(true)}
-        aria-label="고객 지원"
-      >
-        <Image 
-          src="/icons/support.svg" 
-          alt="고객 지원"
-          width={50}
-          height={50}
-          className="drop-shadow-lg"
-          priority={false}
-          quality={90}
-        />
-      </button>
+      />
       <SupportModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

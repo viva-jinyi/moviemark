@@ -1,6 +1,9 @@
 'use client';  // 필수: Portal, DOM 조작, 이벤트 핸들링 때문
 
 import BaseModal from '@/components/common/Modal/BaseModal';
+import BaseButton from '@/components/common/Button/BaseButton';
+import TextArea from '@/components/common/Input/TextArea';
+import { useState } from 'react';
 
 interface SupportModalProps {
   isOpen: boolean;
@@ -17,30 +20,51 @@ interface SupportModalProps {
  */
 
 const SupportModal = ({ isOpen, onClose }: SupportModalProps) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [content, setContent] = useState('');
+
+  const handleSubmit = async () => {
+    if (!content.trim()) return;
+
+    setIsLoading(true);
+    try {
+      // API 호출 로직
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      onClose();
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <BaseModal isOpen={isOpen} onClose={onClose}>
-      <div className="w-[40rem] rounded-2xl bg-gray-800 p-8 shadow-xl">
-        <div className="text-center mb-8">
+      <div>
+        <div className="px-8 py-6 text-center">
           <h2 className="text-heading-4 text-white">
-            Please write down any inconveniences
+            Please write down any<br />inconveniences.
           </h2>
         </div>
-        <input
-          type="text"
-          placeholder="Title"
-          className="w-full h-[5.6rem] px-4 rounded-xl bg-gray-700 text-body text-white
-            placeholder:text-gray-300 border-none outline-none
-            focus:ring-2 focus:ring-primary transition-all"
-        />
-        <button
-          onClick={onClose}
-          className="w-full h-[5.6rem] mt-8 rounded-xl bg-primary
-            text-body font-medium text-white
-            hover:bg-primary-400 active:bg-primary-600
-            transition-colors duration-200"
-        >
-          Suggest
-        </button>
+
+        <div className="p-8">
+          <TextArea
+            placeholder="Please write out."
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            rows={6}
+            maxLength={500}
+          />
+
+          <BaseButton
+            size="full"
+            variant="filled"
+            color="primary-500"
+            onClick={handleSubmit}
+            isLoading={isLoading}
+            className="mt-8"
+          >
+            Suggest
+          </BaseButton>
+        </div>
       </div>
     </BaseModal>
   );
