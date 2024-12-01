@@ -5,6 +5,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  font-size: 10px;
 }
 
 :root[class~="dark"] {
@@ -15,5 +16,4 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: 'Pretendard', sans-serif;
 }
