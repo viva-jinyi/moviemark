@@ -1,7 +1,7 @@
 import { useState, useCallback, ChangeEvent, FormEvent } from 'react';
-import { validateEmail, validatePassword } from '@/features/auth/utils/validation';
+import { validateEmail, validatePassword } from '@/utils/validate';
 import { useToastMessageContext } from '@/providers/ToastMessageProvider';
-import { login } from '@/features/auth/api/auth';
+import { login } from '@/api/auth';
 
 interface UseLoginFormProps {
   onSuccess?: () => void;

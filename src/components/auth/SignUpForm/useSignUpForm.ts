@@ -1,8 +1,8 @@
 import { useState, useCallback, ChangeEvent, FormEvent } from 'react';
 import { SignUpFormProps } from './SignUpForm';
-import { validateEmail, validatePassword } from '@/features/auth/utils/validation';
-import { signup } from '@/features/auth/api/auth';
+import { validateEmail, validatePassword } from '@/utils/validate';
 import { useToastMessageContext } from '@/providers/ToastMessageProvider';
+import { signup } from '@/api/auth';
 
 export type FormType = 'email' | 'password' | 'passwordConfirm'
 interface FormState {
