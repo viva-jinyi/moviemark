@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from 'next/font/google'
 import Providers from '../providers'
 import Layout from '@/components/layout/Layout'
-import AlertContainer from "@/components/common/Alert/AlertContainer";
+import ToastMessageContainer from "@/components/common/ToastMessage/ToastMessageContainer";
 import "@/styles/global.css";
 
 export const metadata: Metadata = {
@@ -28,7 +28,7 @@ export default function RootLayout({
           <Layout>
             {children}
           </Layout>
-          <AlertContainer />
+          <ToastMessageContainer />
         </Providers>
       </body>
     </html>

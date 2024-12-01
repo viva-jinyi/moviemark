@@ -1,12 +1,12 @@
 'use client';
 
-import { useAlertContext } from "@/providers/AlertProvider";
+import { useToastMessageContext } from "@/providers/ToastMessageProvider";
 
-export default function AlertButton() {
-  const { showAlert } = useAlertContext();
+export default function ToastMessageButton() {
+  const { showToastMessage } = useToastMessageContext();
 
   const handleClick = () => {
-    showAlert({type: 'success', message: '성공'});
+    showToastMessage({type: 'success', message: '성공'});
   };
 
   return (

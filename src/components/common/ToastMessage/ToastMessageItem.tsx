@@ -1,10 +1,10 @@
-import { type AlertProps } from '@/types/alert';
-import { useAlertContext } from '@/providers/AlertProvider';
 import Image from 'next/image';
+import { useToastMessageContext } from '@/providers/ToastMessageProvider';
+import { type ToastMessageProps } from '@/types/toastMessage';
 import IconButton from '@/components/common/Button/IconButton';
 
 /**
- * 개별 Alert 컴포넌트
+ * 개별 ToastMessage 컴포넌트
  * 
  * 기술적 결정:
  * 1. 시각적 계층:
@@ -12,7 +12,7 @@ import IconButton from '@/components/common/Button/IconButton';
  *    - rounded-xl: 디자인 시스템의 일관된 곡률 적용
  * 
  * 2. 접근성:
- *    - role="alert": 스크린리더 사용자에게 중요 메시지 전달
+ *    - role="toastMessage": 스크린리더 사용자에게 중요 메시지 전달
  *    - aria-label: 닫기 버튼의 목적 명확화
  * 
  * 3. 애니메이션:
@@ -23,8 +23,8 @@ import IconButton from '@/components/common/Button/IconButton';
  *    - 디자인 토큰 활용: error-500, success-500 등
  *    - 시맨틱 컬러로 상태 표현
  */
-const AlertItem = ({ id, message, type }: AlertProps) => {
-  const { removeAlert } = useAlertContext();
+const ToastMessageItem = ({ id, message, type }: ToastMessageProps) => {
+  const { removeToastMessage } = useToastMessageContext();
   
   const baseStyles = "flex items-center justify-between w-full p-4 shadow-lg rounded-xl animate-slideIn";
   
@@ -36,7 +36,7 @@ const AlertItem = ({ id, message, type }: AlertProps) => {
 
   return (
     <div 
-      role="alert"
+      role="toastMessage"
       className={`${baseStyles} ${typeStyles[type]}`}
     >
       <span className="text-body font-medium pr-4">{message}</span>
@@ -44,11 +44,11 @@ const AlertItem = ({ id, message, type }: AlertProps) => {
         icon={<Image src="/icons/close.svg" alt="닫기" width={24} height={24} />}
         label="알림 닫기"
         color="white"
-        onClick={() => removeAlert(id)}
+        onClick={() => removeToastMessage(id)}
         className="hover:bg-black-200"
       />
     </div>
   );
 };
 
-export default AlertItem; 
+export default ToastMessageItem; 
