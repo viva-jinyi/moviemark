@@ -1,6 +1,6 @@
 'use client';
 
-import { useSidebar } from '@/contexts/SidebarContext';
+import { useSidebar } from '@/providers/SidebarContext';
 import Sidebar from './Sidebar';
 
 const ClientSidebar = () => {
