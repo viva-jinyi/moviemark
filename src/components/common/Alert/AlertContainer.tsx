@@ -15,7 +15,11 @@ const AlertContainer = () => {
   const { alerts } = useAlertContext();
 
   return (
-    <div className="fixed top-8 left-1/2 -translate-x-1/2 z-50 flex flex-col gap-4">
+    <div 
+      role="alert"
+      aria-live="polite"
+      className="fixed bottom-[7.5rem] left-[4.6rem] z-50 flex flex-col gap-4 w-full max-w-[40rem] px-4"
+    >
       {alerts.map(alert => (
         <AlertItem key={alert.id} {...alert} />
       ))}
