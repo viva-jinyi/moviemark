@@ -6,25 +6,14 @@ import { validateEmail, validatePassword } from "@/utils/validate";
 
 import { SignUpFormProps } from "./SignUpForm";
 
-export type FormType = "email" | "password" | "passwordConfirm"
-interface FormState {
-  email: string;
-  password: string;
-  passwordConfirm: string
-}
-
 interface FormErrors {
   email?: string;
   password?: string;
-  passwordConfirm?: string
 }
 
 export const useSignUpForm = ({ onSuccess, onError }: SignUpFormProps) => {
-	const [formState, setFormState] = useState<FormState>({
-		email: "",
-		password: "",
-		passwordConfirm: "",
-	});
+	const [email, setEmail] = useState<string>("");
+	const [password, setPassword] = useState<string>("");
 	const [errors, setErrors] = useState<FormErrors>({});
 	const [isLoading, setIsLoading] = useState(false);
 	const { showToastMessage } = useToastMessageContext();
@@ -32,27 +21,25 @@ export const useSignUpForm = ({ onSuccess, onError }: SignUpFormProps) => {
 	const validateForm = useCallback(() => {
 		const newErrors: FormErrors = {};
 
-		const emailError = validateEmail(formState.email);
+		const emailError = validateEmail(email);
 		if (emailError) newErrors.email = emailError;
 
-		const passwordError = validatePassword(formState.password);
+		const passwordError = validatePassword(password);
 		if (passwordError) newErrors.password = passwordError;
-
-		const passwordConfirmError = formState.password !== formState.passwordConfirm ? "비밀번호가 일치하지 않습니다." : "";
-		if (passwordConfirmError) newErrors.passwordConfirm = passwordConfirmError;
 
 		setErrors(newErrors);
 		return Object.keys(newErrors).length === 0;
-	}, [formState.email, formState.password, formState.passwordConfirm]);
+	}, [email, password]);
 
-	const handleFormChange = useCallback(
-		(key: FormType) => (e: ChangeEvent<HTMLInputElement>) => {
-			const { value } = e.target;
-			setFormState(prev => ({ ...prev, [key]: value }));
-			setErrors(prev => ({ ...prev, [key]: "" }));
-		},
-		[]
-	);
+	const handleEmailChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+		setEmail(e.target.value);
+		setErrors(prev => ({ ...prev, email: "" }));
+	}, []);
+
+	const handlePasswordChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+		setPassword(e.target.value);
+		setErrors(prev => ({ ...prev, password: "" }));
+	}, []);
 
 	const handleSubmit = async (e: FormEvent) => {
 		e.preventDefault();
@@ -61,7 +48,7 @@ export const useSignUpForm = ({ onSuccess, onError }: SignUpFormProps) => {
 
 		setIsLoading(true);
 		try {
-			await signup({ email: formState.email, password: formState.password });
+			await signup({ email, password });
 			showToastMessage({ type: "success", message: "회원가입 성공!" });
 			onSuccess?.();
 		} catch (error) {
@@ -74,10 +61,12 @@ export const useSignUpForm = ({ onSuccess, onError }: SignUpFormProps) => {
 	};
 
 	return {
-		formState,
+		email,
+		password,
 		errors,
 		isLoading,
 		handleSubmit,
-		handleFormChange,
+		handleEmailChange,
+		handlePasswordChange,
 	};
 };
