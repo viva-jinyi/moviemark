@@ -23,6 +23,8 @@ const SignUpForm = ({ onSuccess, onError }: SignUpFormProps) => {
 		handlePasswordChange,
 	} = useSignUpForm({ onSuccess, onError });
 
+	// TODO: 비밀번호 확인 form input 필요
+
 	return (
 		<form
 			onSubmit={handleSubmit}

@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 
+import { useModal } from "@/hooks/useModal";
 import { BaseModalProps } from "@/types/modal";
 
-import { useModal } from "./hooks/useModal";
 import ModalOverlay from "./ModalOverlay";
 import ModalPortal from "./ModalPortal";
 import IconButton from "../Button/IconButton";

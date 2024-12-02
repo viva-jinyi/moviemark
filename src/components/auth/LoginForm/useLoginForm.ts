@@ -1,6 +1,6 @@
 import { useState, useCallback, ChangeEvent, FormEvent } from "react";
 
-import { login } from "@/api/auth";
+import { login } from "@/api/auth/index";
 import { useToastMessageContext } from "@/providers/ToastMessageProvider";
 import { validateEmail, validatePassword } from "@/utils/validate";
 
