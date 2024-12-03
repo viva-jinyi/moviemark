@@ -6,7 +6,7 @@ import Logo from "./Logo";
 
 const Header = () => {
 	return (
-		<header className="max-w-[120rem] w-full mx-auto h-[8rem] flex justify-between items-center py-4">
+		<header className="max-w-[120rem] w-full mx-auto h-[8rem] flex justify-between items-center p-4">
 			<div>
 				<Logo />
 			</div>
