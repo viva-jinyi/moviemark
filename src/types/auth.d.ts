@@ -16,9 +16,5 @@ export interface AuthError extends Error {
 
 export interface DecodedToken {
   sub: string;        // 유저 ID
-  email: string;      // 이메일
-  name?: string;      // 이름
   exp: number;        // 만료 시간
-  iat: number;        // 발급 시간
-  // 기타 필요한 클레임들
 }

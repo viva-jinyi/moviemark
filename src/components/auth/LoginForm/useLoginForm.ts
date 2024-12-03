@@ -1,6 +1,6 @@
 import { useState, useCallback, ChangeEvent, FormEvent } from "react";
 
-import { login } from "@/api/auth/index";
+import { useAuth } from "@/hooks/useAuth";
 import { useToastMessageContext } from "@/providers/ToastMessageProvider";
 import { validateEmail, validatePassword } from "@/utils/validate";
 
@@ -20,6 +20,7 @@ export const useLoginForm = ({ onSuccess, onError }: UseLoginFormProps) => {
 	const [errors, setErrors] = useState<FormErrors>({});
 	const [isLoading, setIsLoading] = useState(false);
 	const { showToastMessage } = useToastMessageContext();
+	const { login } = useAuth();
 
 	const validateForm = useCallback(() => {
 		const newErrors: FormErrors = {};
