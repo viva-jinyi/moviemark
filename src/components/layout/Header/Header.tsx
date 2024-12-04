@@ -5,6 +5,7 @@ import HamburgerButton from "./HamburgerButton";
 import Logo from "./Logo";
 
 const Header = () => {
+	// TODO: Recoil로 user 로그인 상태 받아와서 처리
 	return (
 		<header className="max-w-[120rem] w-full mx-auto h-[8rem] flex justify-between items-center p-4">
 			<div>

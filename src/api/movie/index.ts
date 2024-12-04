@@ -2,6 +2,8 @@ import { type MovieListResponse, type Movie } from "@/types/movie";
 
 import { client } from "../client";
 
+const ITEM_COUNT = 16;
+
 /**
  * 영화 목록을 가져오는 API
  * @param page 페이지 번호 (기본값: 1)
@@ -9,7 +11,7 @@ import { client } from "../client";
  */
 export const getMovies = async (
 	page: number = 1,
-	item: number = 8
+	item: number = ITEM_COUNT
 ): Promise<MovieListResponse> => {
 	return client<MovieListResponse>("/movies", {
 		params: {

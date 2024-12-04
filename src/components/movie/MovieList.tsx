@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 
@@ -24,10 +26,8 @@ import MovieCard from "./MovieCard";
  *   특정 요소가 화면에 보이는지 감지하는 훅 (무한 스크롤 구현에 사용)
  */
 const MovieList = () => {
-	// 화면에 보이는지 감지할 요소의 ref와 상태
 	const { ref, inView } = useInView({
-		threshold: 0.1,
-		delay: 100,
+		threshold: 1, // 요소가 얼마나 보여야 감지할지 (0~1)
 	});
 
 	// 영화 데이터 불러오기
@@ -39,20 +39,40 @@ const MovieList = () => {
 		fetchNextPage,
 		isFetchingNextPage,
 	} = useInfiniteQuery<MovieListResponse>({
+		// 1. 이 데이터를 찾을 때 쓰는 고유한 이름표예요
 		queryKey: ["movies"],
+
+		// 2. 실제로 데이터를 가져오는 함수예요
+		// pageParam은 현재 페이지 번호인데, 없으면 1페이지부터 시작해요
 		queryFn: ({ pageParam = 1 }) => getMovies(pageParam as number),
+
+		// 3. 다음 페이지가 있는지 확인하는 함수예요
 		getNextPageParam: (lastPage, allPages) => {
+			// 지금까지 가져온 페이지 수에 1을 더해서 다음 페이지 번호를 만들어요
 			const nextPage = allPages.length + 1;
+
+			// 만약 다음 페이지 번호가 전체 페이지 수보다 작거나 같으면
+			// 그 번호를 반환하고, 아니면 undefined를 반환해요
+			// (undefined가 반환되면 더 이상 가져올 페이지가 없다는 뜻이에요)
 			return nextPage <= lastPage.total_pages ? nextPage : undefined;
 		},
+
+		// 4. 첫 페이지 번호를 1로 설정해요
 		initialPageParam: 1,
-		staleTime: 60 * 1000,
+
+		// 5. 데이터를 얼마나 오래 유지할지 설정해요
+		// 5분 동안은 같은 데이터를 다시 불러오지 않아요
+		// (1000 = 1초, 60 = 1분, 5 = 5분)
+		staleTime: 1000 * 60 * 5,
 	});
 
 	// 화면에 보이고, 다음 페이지가 있고, 현재 페이지를 가져오는 중이 아닐 때
-	if (inView && hasNextPage && !isFetchingNextPage) {
-		fetchNextPage();
-	}
+	useEffect(() => {
+		if (inView && hasNextPage && !isFetchingNextPage) {
+			console.log("다음 페이지 로딩..."); // 디버깅용
+			fetchNextPage();
+		}
+	}, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
 	// 로딩 중이거나 에러 발생 시 처리
 	if (isLoading) return <p className="text-center">영화 목록을 가져오는 중...</p>;
@@ -70,7 +90,7 @@ const MovieList = () => {
 			</div>
 
 			{/* 무한 스크롤 감지 영역 */}
-			<div ref={ref} className="h-10 mt-4">
+			<div ref={ref} className="h-10 mt-4 bg-red-700">
 				{isFetchingNextPage && <p className="text-center">더 불러오는 중...</p>}
 			</div>
 		</div>
